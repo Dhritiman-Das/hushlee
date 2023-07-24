@@ -17,6 +17,32 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    // Indentation
+    indent: ['error', 2],
+
+    // Enforce semi-colon usage
+    semi: ['error', 'always'],
+
+    // Enforce single quotes
+    quotes: ['error', 'single'],
+
+    // Enforce trailing comma in multi-line objects and arrays
+    'comma-dangle': ['error', 'always-multiline'],
+
+    // Avoid using console.log, alert, etc.
+    'no-console': 'error',
+
+    // Avoid unused variables
+    'no-unused-vars': 'error',
+
+    // Require PascalCase for class names
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'class',
+        format: ['PascalCase'],
+      },
+    ],
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
