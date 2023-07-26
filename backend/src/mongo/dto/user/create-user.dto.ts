@@ -10,7 +10,7 @@ import {
 export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
-  readonly userId: string;
+  readonly userName: string;
 
   @IsEmail()
   @IsOptional()
