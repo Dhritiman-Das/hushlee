@@ -1,73 +1,116 @@
-import React from 'react';
-import {GiMagicHat} from 'react-icons/gi'
-import {FcGoogle} from 'react-icons/fc'
-import {BsFacebook} from 'react-icons/bs'
-import Link from 'next/link';
+"use client";
 
-const page = () => {
-    return (
-        <div className='bg-background h-screen flex items-center justify-center'>
-            <div className='bg-main h-fit w-[500px] p-11 rounded-2xl text-textColor'>
-                <div className='flex items-center justify-center'>
-                    <GiMagicHat className='text-[32px] mr-2 transform -rotate-12' />
-                    <div className='italic text-[28px] font-medium'>
-                        Hushlee
-                    </div>
-                </div>
-                <div className='text-[32px] font-bold text-center my-5'>
-                    Signup
-                </div>
-                <div className='inputFields font-medium'>
-                    <input type="text" 
-                    placeholder='Username'
-                    className='w-full mb-5 rounded-lg p-2 bg-transparent outline-none border-[1px] border-gray-600 placeholder-gray-600'/>
-                    <input type="password" 
-                    placeholder='Password'
-                    className='w-full mb-5 rounded-lg p-2 bg-transparent outline-none border-[1px] border-gray-600 placeholder-gray-600'/>
-                    <input type="password" 
-                    placeholder='Retype password'
-                    className='w-full mb-5 rounded-lg p-2 bg-transparent outline-none border-[1px] border-gray-600 placeholder-gray-600'/>
-                </div>
-                <div className='flex items-center justify-center'>
-                    <button className='bg-button1 font-medium text-[20px] px-[90px] py-1 my-8 rounded-3xl hover:bg-[#D9D9D9]'>
-                        Signup
-                    </button>
-                </div>
-                {/* <div className='separation flex items-center justify-between my-2 text-gray-600'>
-                    <div className='h-[1px] w-[42%] bg-gray-600'></div>
-                    <div className='text-[14px] font-medium'>or</div>
-                    <div className='h-[1px] w-[42%] bg-gray-600'></div>
-                </div>
-                <div className='otherOptions my-5'>
-                    <div className='flex items-center justify-center'>
-                        <div className='google my-2 flex items-center bg-button1 px-2  py-1 w-[60%] rounded-3xl hover:bg-[#D9D9D9] cursor-pointer'>
-                            <FcGoogle className='text-[32px] mr-2'/>
-                            <div className='font-medium text-[16px]'>
-                                Sign up with Google 
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex items-center justify-center'>
-                        <div className='facebook my-2 flex items-center bg-button1 px-2 py-1 w-[60%] rounded-3xl hover:bg-[#D9D9D9] cursor-pointer'>
-                            <BsFacebook className='text-[32px] mr-2 text-blue-600'/>
-                            <div className='font-medium text-[16px]'>
-                                Sign up with Facebook 
-                            </div>
-                        </div>
-                    </div>                    
-                </div> */}
-                <div className='flex items-center justify-center'>
-                    <div>
-                        Have an account already?
-                    </div>
-                    <div className='ml-2 font-medium hover:underline cursor-pointer'>
-                    <Link href="/login">Login</Link>
-                    </div>
-                </div>
-            </div>
-            
+import React, { useState } from "react";
+import { GiMagicHat } from "react-icons/gi";
+import Link from "next/link";
+import { Button, Grid, TextField, styled } from "@mui/material";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import { signup } from "@/requests/auth/signup";
+
+const Page = () => {
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [retypePassword, setRetypePassword] = useState<string>("");
+  const [userNameError, setUserNameError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [retypePasswordError, setRetypePasswordError] = useState<string | null>(
+    null
+  );
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // Reset error messages
+    setUserNameError(null);
+    setPasswordError(null);
+    setRetypePasswordError(null);
+    if (userName === "takenusername") {
+      setUserNameError("Username is already taken");
+    }
+
+    if (password !== retypePassword) {
+      setPasswordError("Passwords must match");
+      setRetypePasswordError("Passwords must match");
+    }
+
+    const response = await signup({
+      userName,
+      password,
+      setError: (message: string) => setUserNameError(message),
+    });
+    console.log({ response });
+  };
+  return (
+    <div className="bg-background h-screen flex items-center justify-center">
+      <div className="bg-main h-fit w-[500px] p-11 rounded-2xl text-textColor">
+        <div className="flex items-center justify-center">
+          <GiMagicHat className="text-4xl mr-2 transform -rotate-12" />
+          <div className="italic text-3xl font-medium">Hushlee</div>
         </div>
-    );
+        <div className="text-[32px] font-bold text-center my-5">Signup</div>
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <Grid container direction="column" spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                error={!!userNameError}
+                helperText={userNameError}
+                id="userName"
+                key="userName"
+                label="Username"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                error={!!passwordError}
+                helperText={passwordError}
+                id="password"
+                key="password"
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                error={!!retypePasswordError}
+                helperText={retypePasswordError}
+                id="retypePassword"
+                key="retypePassword"
+                label="Retype Password"
+                type="password"
+                value={retypePassword}
+                onChange={(e) => setRetypePassword(e.target.value)}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                fullWidth
+              >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+        <div className="text-sm mt-4 text-center">
+          Already have an account?{" "}
+          <Link href={"/login"}>
+            <span className="font-semibold">Login</span>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default page;
+export default Page;
