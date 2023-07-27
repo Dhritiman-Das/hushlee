@@ -21,13 +21,10 @@ export class UserController {
       const user = await this.userService.signupUser(payload);
       return user;
     } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-          error: error.message,
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      if (error.message === 'User already exists') {
+        throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+      }
+      throw error;
     }
   }
   @Post('login')
