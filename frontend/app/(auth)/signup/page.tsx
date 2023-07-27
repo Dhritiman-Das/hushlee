@@ -7,7 +7,7 @@ import { Button, Grid, TextField, styled } from "@mui/material";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { signup } from "@/requests/auth/signup";
 
-const page = () => {
+const Page = () => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [retypePassword, setRetypePassword] = useState<string>("");
@@ -113,4 +113,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
