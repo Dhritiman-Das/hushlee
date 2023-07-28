@@ -16,10 +16,17 @@ import { LoginUserDto } from 'src/mongo/dto/user/login-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post('signup')
-  async signup(@Body() payload: SignupUserDto) {
+  async signup(@Body() payload: SignupUserDto, @Res() res: Response) {
     try {
-      const user = await this.userService.signupUser(payload);
-      return user;
+      const { response, userSessionId } = await this.userService.signupUser(
+        payload,
+      );
+      res.cookie('usid', userSessionId, {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax',
+      });
+      return res.json(response);
     } catch (error) {
       if (error.message === 'User already exists') {
         throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
@@ -28,10 +35,17 @@ export class UserController {
     }
   }
   @Post('login')
-  async login(@Body() payload: LoginUserDto) {
+  async login(@Body() payload: LoginUserDto, @Res() res: Response) {
     try {
-      const user = await this.userService.loginUser(payload);
-      return user;
+      const { response, userSessionId } = await this.userService.loginUser(
+        payload,
+      );
+      res.cookie('usid', userSessionId, {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax',
+      });
+      return res.json(response);
     } catch (error) {
       throw new HttpException(
         {

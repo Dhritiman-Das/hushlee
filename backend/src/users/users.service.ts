@@ -24,11 +24,14 @@ export class UserService {
     }
 
     const newUser = await this.mongoUserService.createUser(payload);
+    console.log({ userSessionId: newUser.userSessionId });
 
     return {
-      _id: newUser._id,
-      setupComplete: newUser.setupComplete,
-      verified: newUser.verified,
+      response: {
+        _id: newUser._id,
+        setupComplete: newUser.setupComplete,
+        verified: newUser.verified,
+      },
       userSessionId: newUser.userSessionId,
     };
   }
@@ -45,10 +48,13 @@ export class UserService {
     let userSessionId = uuidv4();
     Object.assign(user, { userSessionId });
     const updatedUser = await user.save();
+    console.log({ userSessionId: updatedUser.userSessionId });
     return {
-      _id: updatedUser._id,
-      setupComplete: updatedUser.setupComplete,
-      verified: updatedUser.verified,
+      response: {
+        _id: updatedUser._id,
+        setupComplete: updatedUser.setupComplete,
+        verified: updatedUser.verified,
+      },
       userSessionId: updatedUser.userSessionId,
     };
   }
