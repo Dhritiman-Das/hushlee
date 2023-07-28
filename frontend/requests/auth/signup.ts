@@ -9,8 +9,9 @@ interface IProp {
 
 export const signup = async (payload: IProp) => {
   try {
-    const response = await axios.post(authLinks.signup, payload);
-    console.log({ response });
+    const response = await axios.post(authLinks.signup, payload, {
+      withCredentials: true,
+    });
     return response;
   } catch (error: any) {
     console.log("error ", { error });
