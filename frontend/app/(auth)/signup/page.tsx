@@ -48,7 +48,7 @@ const Page = () => {
         </div>
         <div className="text-[32px] font-bold text-center my-5">Signup</div>
         <form onSubmit={handleSubmit} autoComplete="off">
-          <Grid container direction="column" spacing={2}>
+          <Grid container direction="column" spacing={3}>
             <Grid item xs={12}>
               <TextField
                 error={!!userNameError}
@@ -102,10 +102,10 @@ const Page = () => {
             </Grid>
           </Grid>
         </form>
-        <div className="text-sm mt-4 text-center">
+        <div className="text-sm mt-4 text-center text-gray-600">
           Already have an account?{" "}
           <Link href={"/login"}>
-            <span className="font-semibold">Login</span>
+            <span className="font-semibold hover:underline">Login</span>
           </Link>
         </div>
       </div>
