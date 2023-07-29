@@ -5,12 +5,14 @@ import {
   Res,
   HttpException,
   HttpStatus,
+  Put,
 } from '@nestjs/common';
 import { UserService } from './users.service';
 import { CreateUserDto } from 'src/mongo/dto/user/create-user.dto';
 import { Response } from 'express';
 import { SignupUserDto } from 'src/mongo/dto/user/signup-user.dto';
 import { LoginUserDto } from 'src/mongo/dto/user/login-user.dto';
+import { ProfileSetupDto } from 'src/mongo/dto/profile/profile-setup.dto';
 
 @Controller('user')
 export class UserController {

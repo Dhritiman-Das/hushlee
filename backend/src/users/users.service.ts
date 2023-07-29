@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { LoginUserDto } from 'src/mongo/dto/user/login-user.dto';
+import { ProfileSetupDto } from 'src/mongo/dto/profile/profile-setup.dto';
 import { SignupUserDto } from 'src/mongo/dto/user/signup-user.dto';
 import { MongoUserService } from 'src/mongo/service/user/mongo-user.service';
 import { v4 as uuidv4 } from 'uuid';
@@ -57,5 +58,18 @@ export class UserService {
       },
       userSessionId: updatedUser.userSessionId,
     };
+  }
+
+  async updateUser(payload: ProfileSetupDto) {
+    const { userId, ...data } = payload;
+    console.log({ userId, data });
+
+    const updatedUser = await this.mongoUserService.updateUser(
+      { _id: userId },
+      data,
+    );
+    console.log({ updatedUser });
+
+    return updatedUser;
   }
 }
