@@ -5,22 +5,19 @@ import {
   Res,
   HttpException,
   HttpStatus,
-  Put,
 } from '@nestjs/common';
-import { UserService } from './users.service';
-import { CreateUserDto } from 'src/mongo/dto/user/create-user.dto';
+import { AuthService } from './auth.service';
 import { Response } from 'express';
 import { SignupUserDto } from 'src/mongo/dto/user/signup-user.dto';
 import { LoginUserDto } from 'src/mongo/dto/user/login-user.dto';
-import { ProfileSetupDto } from 'src/mongo/dto/profile/profile-setup.dto';
 
 @Controller('user')
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
   @Post('signup')
   async signup(@Body() payload: SignupUserDto, @Res() res: Response) {
     try {
-      const { response, userSessionId } = await this.userService.signupUser(
+      const { response, userSessionId } = await this.authService.signupUser(
         payload,
       );
       res.cookie('usid', userSessionId, {
@@ -39,7 +36,7 @@ export class UserController {
   @Post('login')
   async login(@Body() payload: LoginUserDto, @Res() res: Response) {
     try {
-      const { response, userSessionId } = await this.userService.loginUser(
+      const { response, userSessionId } = await this.authService.loginUser(
         payload,
       );
       res.cookie('usid', userSessionId, {

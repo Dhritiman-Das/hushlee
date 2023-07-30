@@ -14,6 +14,8 @@ export class User {
   verified: boolean;
   @Prop({ required: true, default: false })
   setupComplete: boolean;
+  @Prop({ default: Date.now })
+  createdAt: Date;
   @Prop({ required: false })
   firstName: string;
   @Prop({ required: false })

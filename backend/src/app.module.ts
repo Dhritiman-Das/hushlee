@@ -2,8 +2,9 @@ import * as dotenv from 'dotenv';
 import { Module } from '@nestjs/common';
 import { MongoModule } from './mongo/mongo.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserModule } from './users/users.module';
+import { UserModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
+import { SharedLinksModule } from './shared-links/shared-links.module';
 
 dotenv.config();
 @Module({
@@ -12,6 +13,7 @@ dotenv.config();
     MongoModule,
     UserModule,
     ProfileModule,
+    SharedLinksModule,
   ],
   controllers: [],
   providers: [],
