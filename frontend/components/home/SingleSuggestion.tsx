@@ -1,7 +1,12 @@
-import React from 'react';
+"use client"
+
+import React, {useEffect} from 'react';
 import { Card, CardContent, CardMedia, Grid, Typography, Button } from '@mui/material';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
+import { AppDispatch, useAppSelector } from '@/redux/store';
+import { useDispatch } from 'react-redux';
+import { homeActions } from '@/redux/features/home-slice';
 
 interface SuggestionProps {
     image: StaticImageData;
@@ -10,6 +15,16 @@ interface SuggestionProps {
 }
 
 const SingleSuggestion: React.FC<SuggestionProps> = (props) => {
+    const data = useAppSelector((state) => state.home);
+    const dispatch = useDispatch<AppDispatch> ();
+    console.log(data);
+
+    
+    
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        
+        dispatch(homeActions.toggleChatOpen({id: props.id, open: true}));
+    }
     return (
         <>
             <Card className='flex items-center justify-between px-2 py-3 bg-main bg-opacity-80 rounded-xl my-5 mx-[50px]'>
@@ -30,7 +45,7 @@ const SingleSuggestion: React.FC<SuggestionProps> = (props) => {
                                 {props.name}
                             </Grid>
                             <Grid item xs={12}>
-                                {props.id}
+                                @{props.id}
                             </Grid>
                         </Grid>
                     </CardContent>
@@ -38,7 +53,9 @@ const SingleSuggestion: React.FC<SuggestionProps> = (props) => {
                 <Button
                 variant='contained'
                 color='success'
-                className='mr-11'>
+                className='mr-11'
+                id={props.id}
+                onClick={handleClick}>
                     Message
                 </Button>
             </Card>
