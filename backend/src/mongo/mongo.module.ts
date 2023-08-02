@@ -8,6 +8,8 @@ import {
   SharedLinksSchema,
 } from './schemas/sharedLinks/sharedLinks.schema';
 import { MongoCreateLinkService } from './service/shared-links/mongo-shared-links.service';
+import { Session, SessionSchema } from './schemas/session/session.schema';
+import { MongoSessionService } from './service/session/mongo-session.service';
 
 @Global()
 @Module({
@@ -16,8 +18,19 @@ import { MongoCreateLinkService } from './service/shared-links/mongo-shared-link
     MongooseModule.forFeature([
       { name: SharedLinks.name, schema: SharedLinksSchema },
     ]),
+    MongooseModule.forFeature([{ name: Session.name, schema: SessionSchema }]),
   ],
-  providers: [MongoUserService, MongoProfileService, MongoCreateLinkService],
-  exports: [MongoUserService, MongoProfileService, MongoCreateLinkService],
+  providers: [
+    MongoUserService,
+    MongoProfileService,
+    MongoCreateLinkService,
+    MongoSessionService,
+  ],
+  exports: [
+    MongoUserService,
+    MongoProfileService,
+    MongoCreateLinkService,
+    MongoSessionService,
+  ],
 })
 export class MongoModule {}

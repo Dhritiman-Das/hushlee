@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { SharedLinksModule } from './shared-links/shared-links.module';
+import { SessionsModule } from './sessions/sessions.module';
 
 dotenv.config();
 @Module({
@@ -14,6 +15,7 @@ dotenv.config();
     UserModule,
     ProfileModule,
     SharedLinksModule,
+    SessionsModule,
   ],
   controllers: [],
   providers: [],

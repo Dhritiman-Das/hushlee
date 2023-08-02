@@ -7,7 +7,7 @@ export class SharedLinks {
   @Prop({ required: false, default: false })
   verified: boolean;
   @Prop({ required: false, default: 5 })
-  msgLimit: string;
+  msgLimit: number;
 }
 
 export const SharedLinksSchema = SchemaFactory.createForClass(SharedLinks);
