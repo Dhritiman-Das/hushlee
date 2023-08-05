@@ -6,7 +6,7 @@ import ChatCard from './ChatCard';
 
 const Chats = () => {
     return (
-        <div className='w-[20%] bg-[#000000] bg-opacity-40 h-screen p-8'>
+        <div className='w-[20%] bg-[#000000] bg-opacity-60 h-screen p-8'>
             <div className='text-center font-medium text-[20px]'>
                 Your Chats
             </div>

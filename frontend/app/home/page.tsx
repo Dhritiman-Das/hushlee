@@ -10,6 +10,7 @@ import Link from 'next/link';
 const page = () => {
     const chatOpen = useAppSelector((state) => state.home.chatOpen);
     const openChatId = Object.keys(chatOpen).find((id) => chatOpen[id]);
+    
     const navigateToChat = () => {
         if (openChatId) {
           const encodedChatId = encodeURIComponent(openChatId);
