@@ -27,4 +27,8 @@ export class MongoProfileService {
       );
     }
   }
+  async findUser(query: FindUserDto) {
+    const user = await this.userModel.findOne(query);
+    return user;
+  }
 }

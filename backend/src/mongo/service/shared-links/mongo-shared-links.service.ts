@@ -17,10 +17,12 @@ export class MongoCreateLinkService {
     options: Object = {},
   ) {
     try {
-      const user = await this.createLinkModel
+      const link = await this.createLinkModel
         .findOne(query, projection, options)
         .exec();
-      return user;
+      console.log({ link, query });
+
+      return link;
     } catch (error) {
       throw new InternalServerErrorException(
         'Error while getting Link: ' + error.message,
