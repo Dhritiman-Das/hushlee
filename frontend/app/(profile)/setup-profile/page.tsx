@@ -77,6 +77,8 @@ const Page = () => {
             }
             agreeAction={handleAgree}
             disagreeAction={handleDisagree}
+            primaryBtnTxt="Skip"
+            secondaryBtnTxt="Cancel"
           />
         </Grid>
       </div>

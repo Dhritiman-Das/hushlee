@@ -15,6 +15,8 @@ interface GeneralModalProps {
   description: string;
   disagreeAction: () => void;
   agreeAction: () => void;
+  primaryBtnTxt: string;
+  secondaryBtnTxt: string;
 }
 
 const GeneralModal: React.FC<GeneralModalProps> = ({
@@ -24,6 +26,8 @@ const GeneralModal: React.FC<GeneralModalProps> = ({
   description,
   disagreeAction,
   agreeAction,
+  primaryBtnTxt,
+  secondaryBtnTxt,
 }) => {
   return (
     <Dialog
@@ -39,9 +43,9 @@ const GeneralModal: React.FC<GeneralModalProps> = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={disagreeAction}>Disagree</Button>
-        <Button onClick={agreeAction} autoFocus>
-          Agree
+        <Button onClick={disagreeAction}>{secondaryBtnTxt}</Button>
+        <Button variant="contained" onClick={agreeAction} autoFocus>
+          {primaryBtnTxt}
         </Button>
       </DialogActions>
     </Dialog>
