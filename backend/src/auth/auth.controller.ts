@@ -44,15 +44,9 @@ export class AuthController {
         secure: false,
         sameSite: 'lax',
       });
-      return res.json(response);
+      return res.status(HttpStatus.OK).json(response);
     } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-          error: error.message,
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw error;
     }
   }
 }

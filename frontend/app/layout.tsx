@@ -1,5 +1,5 @@
 import { ReduxProvider } from "@/redux/provider";
-import "./globals.css"; 
+import "./globals.css";
 
 export const metadata = {
   title: "Hushlee",
@@ -13,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body><ReduxProvider>{children}</ReduxProvider></body>
+      <body>
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }
