@@ -43,7 +43,7 @@ const Page = () => {
     console.log("hi2");
     console.log({ response });
     if (response?.status === 201) {
-      router.push("/setup-complete");
+      router.push("/setup-profile");
     }
   };
   return (
