@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { GiMagicHat } from "react-icons/gi";
 import Link from "next/link";
 import { Button, Grid, TextField, styled } from "@mui/material";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { signup } from "@/requests/auth/signup";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [retypePassword, setRetypePassword] = useState<string>("");
@@ -30,14 +31,20 @@ const Page = () => {
     if (password !== retypePassword) {
       setPasswordError("Passwords must match");
       setRetypePasswordError("Passwords must match");
+      return;
     }
+    console.log("hi");
 
     const response = await signup({
       userName,
       password,
       setError: (message: string) => setUserNameError(message),
     });
+    console.log("hi2");
     console.log({ response });
+    if (response?.status === 201) {
+      router.push("/setup-profile");
+    }
   };
   return (
     <div className="bg-background h-screen flex items-center justify-center">
@@ -48,7 +55,7 @@ const Page = () => {
         </div>
         <div className="text-[32px] font-bold text-center my-5">Signup</div>
         <form onSubmit={handleSubmit} autoComplete="off">
-          <Grid container direction="column" spacing={2}>
+          <Grid container direction="column" spacing={3}>
             <Grid item xs={12}>
               <TextField
                 error={!!userNameError}
@@ -97,15 +104,15 @@ const Page = () => {
                 type="submit"
                 fullWidth
               >
-                Submit
+                Signup
               </Button>
             </Grid>
           </Grid>
         </form>
-        <div className="text-sm mt-4 text-center">
+        <div className="text-sm mt-4 text-center text-gray-600">
           Already have an account?{" "}
           <Link href={"/login"}>
-            <span className="font-semibold">Login</span>
+            <span className="font-semibold hover:underline">Login</span>
           </Link>
         </div>
       </div>

@@ -9,4 +9,6 @@ export class FindUserDto {
   readonly email?: string;
   @IsString()
   readonly password?: string;
+  @IsString()
+  readonly userSessionId?: string;
 }

@@ -40,4 +40,22 @@ export class MongoUserService {
       );
     }
   }
+  async updateUser(
+    query: FindUserDto,
+    updateData: Partial<User>,
+    options: Object = {},
+  ) {
+    try {
+      const user = await this.userModel
+        .findOneAndUpdate(query, updateData, { ...options, new: true }) // new: true returns the updated document
+        .exec();
+      console.log({ user });
+
+      return user;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Error while updating user: ' + error.message,
+      );
+    }
+  }
 }
