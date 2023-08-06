@@ -1,17 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./features/auth-slice"
-import profileSetupReducer, { profileSetupSlice } from "./features/profileSetup-slice"
+import authReducer from "./features/auth-slice";
+import profileSetupReducer, {
+  profileSetupSlice,
+} from "./features/profileSetup-slice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import homeSlice from "./features/home-slice";
 import chatSlice from "./features/chat-slice";
+import snackbarSlice from "./general/snackbar";
 
 export const store = configureStore({
-    reducer: {
-        authReducer,
-        profileSetup: profileSetupSlice.reducer,
-        home: homeSlice.reducer,
-        chat: chatSlice.reducer,
-    }
+  reducer: {
+    authReducer,
+    profileSetup: profileSetupSlice.reducer,
+    home: homeSlice.reducer,
+    chat: chatSlice.reducer,
+    snackbar: snackbarSlice.reducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

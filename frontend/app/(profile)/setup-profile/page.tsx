@@ -50,15 +50,15 @@ const Page = () => {
 
   return (
     <div className="bg-background min-h-screen flex items-center justify-center">
-      <div className="bg-main h-fit w-[500px] p-11 rounded-2xl text-textColor">
+      <div className="bg-main h-fit w-[500px] px-11 py-6 rounded-2xl text-textColor">
         <div className="flex items-center justify-center">
           <GiMagicHat className="text-[32px] mr-2 transform -rotate-12" />
           <div className="italic text-[28px] font-medium">Hushlee</div>
         </div>
-        <div className="text-[32px] font-bold text-center mt-5 mb-3">
+        <div className="text-[32px] font-bold text-center mt-4 mb-3">
           Profile Setup
         </div>
-        <div className="flex items-center justify-center mb-11">
+        <div className="flex items-center justify-center mb-6">
           <Bubble $filled={setupData.page === (1 as any)}> </Bubble>
           <span className="ml-6" />
           <Bubble $filled={setupData.page === (2 as any)}> </Bubble>

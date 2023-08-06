@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginUserDto } from 'src/mongo/dto/user/login-user.dto';
 import { ProfileSetupDto } from 'src/mongo/dto/profile/profile-setup.dto';
 import { SignupUserDto } from 'src/mongo/dto/user/signup-user.dto';
@@ -37,7 +37,7 @@ export class AuthService {
       password,
     });
     if (!user) {
-      throw new Error('Invalid email or password.');
+      throw new UnauthorizedException('Invalid username or password.');
     }
     let userSessionId = uuidv4();
     Object.assign(user, { userSessionId });
