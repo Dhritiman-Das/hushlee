@@ -12,15 +12,26 @@ interface ChatHeader {
 
 const Header: React.FC<ChatHeader> = (props) => {
     return (
-        <div className='header h-fit border-b-[1px] py-3 px-[60px] border-gray-600 flex items-center justify-between'>
+        <div className='header h-fit border-b-[1px] py-3 px-[30px] border-gray-600 flex items-center justify-between'>
             <div className='flex items-center'>
-                <Image src={img1} alt='dp' className='h-[60px] w-[60px] rounded-full'/>
-                <div className='font-medium ml-5'>
-                    <div>
-                        Jacquline Saikia
+                <div className='mr-2 w-[80px]'>
+                    <Image
+                    src={img1}
+                    alt="dp"
+                    className='rounded-full h-[60px] w-[60px]' 
+                    />
+                </div>
+                <div className='w-full mx-2'>
+                    <div className='font-medium flex items-center'>
+                        <div className='mr-2'>
+                            Jacqueline Saikia
+                        </div>
+                        <div className='text-gray-600'>
+                            @{props.chatId}
+                        </div>
                     </div>
-                    <div>
-                        @{props.chatId}
+                    <div className='text-gray-600 flex items-center justify-between'>
+                        Active 4 h ago
                     </div>
                 </div>
             </div>

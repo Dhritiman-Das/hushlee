@@ -12,6 +12,7 @@ interface SuggestionProps {
     image: StaticImageData;
     name: string;
     id: string;
+    bio: string;
 }
 
 const SingleSuggestion: React.FC<SuggestionProps> = (props) => {
@@ -27,37 +28,40 @@ const SingleSuggestion: React.FC<SuggestionProps> = (props) => {
     }
     return (
         <>
-            <Card className='flex items-center justify-between px-2 py-3 bg-main bg-opacity-80 rounded-xl my-5 mx-[50px]'>
+            <Card className='flex items-center justify-between  border-gray-500 border-[1px] px-2 py-3 bg-[#FFD1E8] bg-opacity-70 rounded-xl my-5 mx-[50px]'>
                 <div className='flex items-center'>
-                    <CardMedia
-                        component="div" 
-                        className='w-[100px] h-auto ml-8'
-                    >
+                    <div className='w-[100px]'>
                         <Image
-                        src={props.image}
-                        alt="dp"
-                        className='rounded-full h-[80px] w-[80px]' 
+                            src={props.image}
+                            alt="dp"
+                            className='rounded-full h-[60px] w-[60px]' 
                         />
-                    </CardMedia>
-                    <CardContent>
-                        <Grid container spacing={0.5} className='font-medium text-[20px]'>
-                            <Grid item xs={12}>
+                    </div>                        
+                    <div className='w-full mr-2 '>
+                        <div className='font-medium flex items-center'>
+                            <div className='mr-2'>
                                 {props.name}
-                            </Grid>
-                            <Grid item xs={12}>
+                            </div>
+                            <div className='text-gray-600'>
                                 @{props.id}
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </div>                
-                <Button
-                variant='contained'
-                color='success'
-                className='mr-11'
-                id={props.id}
-                onClick={handleClick}>
-                    Message
-                </Button>
+                            </div>
+                        </div>
+                        <div className='text-gray-600'>
+                            {props.bio}
+                        </div>
+                    </div>
+                </div> 
+                <div className=''>
+                    <Button
+                    variant='contained'
+                    color='success'
+                    className='mr-11 bg-green-600'
+                    id={props.id}
+                    onClick={handleClick}>
+                        Message
+                    </Button>
+                </div>              
+                
             </Card>
         </>
     );
