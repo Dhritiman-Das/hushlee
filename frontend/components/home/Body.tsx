@@ -4,7 +4,7 @@ import SuggestionsBox from './SuggestionsBox';
 const Body = () => {
     return (
         <div className=' flex'>
-            <div className='w-full px-[100px] pb-[100px] overflow-y-scroll'>
+            <div className='w-full pl-[100px] pb-[100px] overflow-y-scroll'>
                 <SuggestionsBox text='From your university:'/>
                 <SuggestionsBox text='From your city:'/>
                 <SuggestionsBox text='People you may know:'/>
