@@ -55,6 +55,7 @@ export class SharedLinksController {
     //start a session
     try {
       const visitor = req.userId;
+      const verified = req.verified;
       const linkDetails = await this.sharedLinksService.getDetails({
         _id: linkId,
       });
@@ -64,6 +65,7 @@ export class SharedLinksController {
         linkId,
         visitor,
         linkDetails,
+        verified,
       });
       return res.json({ session });
     } catch (error) {

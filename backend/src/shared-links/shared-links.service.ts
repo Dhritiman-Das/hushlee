@@ -31,19 +31,27 @@ export class SharedLinksService {
     linkId: string;
     visitor: string;
     linkDetails: SharedLinks;
+    verified: boolean;
   }) {
-    const { linkId, visitor, linkDetails } = payload;
-    const { owner, msgLimit, verified } = linkDetails;
+    const { linkId, visitor, linkDetails, verified } = payload;
+    const { owner, msgLimit } = linkDetails;
     //First check if a session already exists between the visitorId and the ownerId
     const session = await this.sessionService.findSession({ owner, visitor });
     if (session) {
       throw new SessionExistsError('Session already exists', session);
+    }
+    //Before creating a new session check if verified status matches
+    if (linkDetails.verified === true && verified === false) {
+      throw new Error(
+        'You must complete your email verification before proceeding',
+      );
     }
     //Else create a new session
     const newLink = await this.sessionService.createSession({
       owner,
       msgLimit,
       visitor,
+      callerLink: linkId,
     });
 
     return newLink;

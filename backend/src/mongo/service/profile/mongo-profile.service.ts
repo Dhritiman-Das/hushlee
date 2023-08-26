@@ -28,7 +28,10 @@ export class MongoProfileService {
     }
   }
   async findUser(query: FindUserDto) {
-    const user = await this.userModel.findOne(query);
+    const user = await this.userModel.findOne(query, {
+      password: 0,
+      userSessionId: 0,
+    });
     return user;
   }
 }
