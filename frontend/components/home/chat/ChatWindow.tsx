@@ -9,11 +9,15 @@ interface ChatWindowProps {
 
 const ChatWindow: React.FC<ChatWindowProps> = (props) => {
   return (
-    <div className="w-full flex-col">
-      <Header chatId={props.chatId} />
-      <Conversation />
-      <MessageBar />
+    <div className="flex w-full">
+      <div className="w-full flex-col">
+        <Header chatId={props.chatId} />
+        <Conversation />
+        <MessageBar />
+      </div>
+      <div className='border-l-[1px] border-gray-600 h-screen w-[500px]'></div>
     </div>
+    
   );
 };
 

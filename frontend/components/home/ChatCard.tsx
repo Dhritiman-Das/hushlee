@@ -7,32 +7,39 @@ interface ChatCardProps {
     image: StaticImageData;
     name: string;
     id: string;
+    recentMsg: string;
+    time: string
 }
 
 const ChatCard: React.FC<ChatCardProps> = (props) => {
     return (
         <>
-            <Card className='flex items-center px-2 bg-accentMain bg-opacity-80 rounded-xl my-5 cursor-pointer hover:scale-105'>
-                <CardMedia
-                    component="div" 
-                    className='w-[100px] h-auto'
-                >
+            <Card className='flex items-center p-2 bg-transparent border-[1px] border-gray-500 rounded-xl my-2 mx-2 cursor-pointer hover:scale-105'>
+                <div className='mr-2 w-14'>
                     <Image
                     src={props.image}
                     alt="dp"
-                    className='rounded-full h-[60px] w-[60px]' 
+                    className='rounded-full h-[40px] w-[40px]' 
                     />
-                </CardMedia>
-                <CardContent>
-                    <Grid container spacing={0.5} className='font-medium'>
-                        <Grid item xs={12}>
+                </div>                  
+                <div className='w-full mr-2'>
+                    <div className='font-medium flex items-center'>
+                        <div className='mr-2'>
                             {props.name}
-                        </Grid>
-                        <Grid item xs={12}>
-                            {props.id}
-                        </Grid>
-                    </Grid>
-                </CardContent>
+                        </div>
+                        <div className='text-gray-600'>
+                            @{props.id}
+                        </div>
+                    </div>
+                    <div className='text-gray-600 flex items-center justify-between'>
+                        <div className=''>
+                            {props.recentMsg}
+                        </div>
+                         <div>
+                            | {props.time}
+                         </div>
+                    </div>
+                </div>
             </Card>
         </>
     );

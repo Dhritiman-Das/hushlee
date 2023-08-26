@@ -18,7 +18,7 @@ module.exports = {
         background: "#D1C4E9",
         main: "#A29BFE",
         accent: "#FFD166",
-        accentMain: "#F8BBD0",
+        accentMain: "#FFD1E8",
         textColor: "#2D3436",
         lightTheme: "#000000",
         button: "#C7D6C3",

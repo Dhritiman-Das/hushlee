@@ -17,7 +17,7 @@ const Page = () => {
   return (
     <div className="flex flex-col h-screen overflow-hidden text-textColor">
       <Header />
-      <div className="bg-background h-full flex flex-grow">
+      <div className="bg-background h-full flex">
         <Chats />
         <ChatWindow chatId={openChatId} />
       </div>
