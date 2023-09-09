@@ -1,38 +1,33 @@
-import * as React from "react";
-import List from "@mui/material/List";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import LinkIcon from "@mui/icons-material/Link";
-import PersonIcon from "@mui/icons-material/Person";
-import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { ListItem, ListItemProps, styled } from "@mui/material";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import LinkIcon from '@mui/icons-material/Link';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { ListItem, ListItemProps, styled } from '@mui/material';
+import Link from 'next/link';
 
 const style = {
   width: 250,
   maxWidth: 360,
-  bgcolor: "background.paper",
+  bgcolor: 'background.paper',
   padding: 0,
 };
 
-const StyledListItem = styled(ListItem)<ListItemProps>(({ theme }) => ({
-  "&:hover": {
-    cursor: "pointer",
-    backgroundColor: "rgba(0, 0, 0, 0.08)",
+const StyledListItem = styled(ListItem)<ListItemProps>(() => ({
+  '&:hover': {
+    cursor: 'pointer',
+    backgroundColor: 'rgba(0, 0, 0, 0.08)',
   },
 }));
 
 export default function MoreOptions() {
-  const router = useRouter();
-  const handleRouteChange = (routeTo: string) => {
-    router.push(routeTo);
-  };
   return (
     <List sx={style} component="nav" aria-label="mailbox folders">
-      <Link href={"/links"}>
+      <Link href="/links">
         <StyledListItem>
           <ListItemIcon>
             <LinkIcon />
@@ -41,7 +36,7 @@ export default function MoreOptions() {
         </StyledListItem>
       </Link>
       <Divider />
-      <Link href={"/profile"}>
+      <Link href="/profile">
         <StyledListItem divider>
           <ListItemIcon>
             <PersonIcon />
@@ -49,7 +44,7 @@ export default function MoreOptions() {
           <ListItemText primary="My Profile" />
         </StyledListItem>
       </Link>
-      <Link href={"/settings"}>
+      <Link href="/settings">
         <StyledListItem>
           <ListItemIcon>
             <SettingsIcon />
@@ -58,7 +53,7 @@ export default function MoreOptions() {
         </StyledListItem>
       </Link>
       <Divider light />
-      <Link href={"/logout"}>
+      <Link href="/logout">
         <StyledListItem>
           <ListItemIcon>
             <LogoutIcon />

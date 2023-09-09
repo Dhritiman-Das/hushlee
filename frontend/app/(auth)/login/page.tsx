@@ -1,21 +1,22 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { GiMagicHat } from "react-icons/gi";
-import { Button, Grid, TextField, styled } from "@mui/material";
-import Link from "next/link";
-import { login } from "@/requests/auth/login";
-import { useRouter } from "next/navigation";
-import SnackBar from "@/components/general/SnackBar";
-import { useDispatch } from "react-redux";
-import { snackbarActions } from "@/redux/general/snackbar";
+import React, { useState } from 'react';
+import { GiMagicHat } from 'react-icons/gi';
+import {
+  Button, Grid, TextField,
+} from '@mui/material';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { login } from '@/requests/auth/login';
+import SnackBar from '@/components/general/SnackBar';
+import { snackbarActions } from '@/redux/general/snackbar';
 
-const Page = () => {
+function Page() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [userName, setUserName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+  const [userName, setUserName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,20 +26,23 @@ const Page = () => {
         userName,
         password,
       });
-      console.log({ response });
       if (response?.status === 200) {
-        router.push("/home");
+        router.push('/home');
       } else if (response.status === 401) {
-        console.log("Should open snackbar");
         dispatch(
           snackbarActions.setSnackbar({
-            message: "Invalid username or password",
-            type: "error",
-          })
+            message: 'Invalid username or password',
+            type: 'error',
+          }),
         );
       }
     } catch (error: any) {
-      console.log(error.status);
+      dispatch(
+        snackbarActions.setSnackbar({
+          message: error.response?.data?.message || 'An unexpected error occurred. Please try again.',
+          type: 'error',
+        }),
+      );
     }
   };
 
@@ -92,8 +96,9 @@ const Page = () => {
             </Grid>
           </form>
           <div className="text-sm mt-4 text-center text-gray-600">
-            Don&apos;t have an account?{" "}
-            <Link href={"/signup"}>
+            Don&apos;t have an account?
+            {' '}
+            <Link href="/signup">
               <span className="font-semibold hover:underline">Signup</span>
             </Link>
           </div>
@@ -101,6 +106,6 @@ const Page = () => {
       </div>
     </>
   );
-};
+}
 
 export default Page;

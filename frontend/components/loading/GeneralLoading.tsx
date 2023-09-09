@@ -1,8 +1,8 @@
-import { Typography } from "@mui/material";
-import React from "react";
-import { GiMagicHat } from "react-icons/gi";
+import { Typography } from '@mui/material';
+import React from 'react';
+import { GiMagicHat } from 'react-icons/gi';
 
-const GeneralLoading = () => {
+function GeneralLoading() {
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-b from-violet-500 to-blue-600">
       <div className="text-white flex flex-col gap-5">
@@ -15,6 +15,6 @@ const GeneralLoading = () => {
       </div>
     </div>
   );
-};
+}
 
 export default GeneralLoading;

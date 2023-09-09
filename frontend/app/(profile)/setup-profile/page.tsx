@@ -1,13 +1,15 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { GiMagicHat } from "react-icons/gi";
-import { Avatar, Button, Grid, Link } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Setup1 from "@/components/profile/Setup1";
-import Setup2 from "@/components/profile/Setup2";
-import { useAppSelector } from "@/redux/store";
-import GeneralModal from "@/components/general/GeneralModal";
+import React, { useState } from 'react';
+import { GiMagicHat } from 'react-icons/gi';
+import {
+  Avatar, Button, Grid,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Setup1 from '@/components/profile/Setup1';
+import Setup2 from '@/components/profile/Setup2';
+import { useAppSelector } from '@/redux/store';
+import GeneralModal from '@/components/general/GeneralModal';
 
 interface BubbleProps {
   $filled: boolean;
@@ -15,8 +17,8 @@ interface BubbleProps {
 
 const Bubble = styled(Avatar)<BubbleProps>(({ theme, $filled }) => ({
   backgroundImage: $filled
-    ? "linear-gradient(to right, #F8BBD0, #F48FB1)"
-    : "linear-gradient(to right, #D9D9D9, #BDBDBD)",
+    ? 'linear-gradient(to right, #F8BBD0, #F48FB1)'
+    : 'linear-gradient(to right, #D9D9D9, #BDBDBD)',
   color: $filled
     ? theme.palette.primary.contrastText
     : theme.palette.primary.main,
@@ -26,7 +28,7 @@ const Bubble = styled(Avatar)<BubbleProps>(({ theme, $filled }) => ({
   border: `1px solid ${theme.palette.primary.main}`,
 }));
 
-const Page = () => {
+function Page() {
   const setupData = useAppSelector((state) => state.profileSetup.value);
   const [open, setOpen] = useState(false);
 
@@ -39,12 +41,10 @@ const Page = () => {
   };
 
   const handleAgree = () => {
-    console.log("Agree clicked");
     handleClose();
   };
 
   const handleDisagree = () => {
-    console.log("Disagree clicked");
     handleClose();
   };
 
@@ -64,17 +64,15 @@ const Page = () => {
           <Bubble $filled={setupData.page === (2 as any)}> </Bubble>
         </div>
         <form>{setupData.page === 1 ? <Setup1 /> : <Setup2 />}</form>
-        <Grid item xs={12} sx={{ textAlign: "right", marginTop: "15px" }}>
+        <Grid item xs={12} sx={{ textAlign: 'right', marginTop: '15px' }}>
           <Button variant="text" onClick={handleClickOpen}>
             Skip profile setup
           </Button>
           <GeneralModal
             open={open}
             handleClose={handleClose}
-            title={"Skip profile setup?"}
-            description={
-              "Profile setup helps us suggest you better people to talk to. Also some conversation might require profile setup"
-            }
+            title="Skip profile setup?"
+            description="Profile setup helps us suggest you better people to talk to. Also some conversation might require profile setup"
             agreeAction={handleAgree}
             disagreeAction={handleDisagree}
             primaryBtnTxt="Skip"
@@ -84,6 +82,6 @@ const Page = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Page;
