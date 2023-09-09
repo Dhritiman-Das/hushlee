@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
 type HomeState = {
   chatOpen: Record<string, boolean>;
@@ -9,14 +9,13 @@ const initialState: HomeState = {
 };
 
 const homeSlice = createSlice({
-  name: "home",
+  name: 'home',
   initialState,
   reducers: {
     toggleChatOpen: (state, action: PayloadAction<{ id: string; open: boolean }>) => {
       const { id, open } = action.payload;
       state.chatOpen[id] = open;
       console.log('State after update:', current(state));
-      
     },
   },
 });

@@ -1,21 +1,23 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { GiMagicHat } from "react-icons/gi";
-import Link from "next/link";
-import { Button, Grid, TextField, styled } from "@mui/material";
-import { signup } from "@/requests/auth/signup";
-import { useRouter } from "next/navigation";
+import React, { useState } from 'react';
+import { GiMagicHat } from 'react-icons/gi';
+import Link from 'next/link';
+import {
+  Button, Grid, TextField,
+} from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { signup } from '@/requests/auth/signup';
 
-const Page = () => {
+function Page() {
   const router = useRouter();
-  const [userName, setUserName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [retypePassword, setRetypePassword] = useState<string>("");
+  const [userName, setUserName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [retypePassword, setRetypePassword] = useState<string>('');
   const [userNameError, setUserNameError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [retypePasswordError, setRetypePasswordError] = useState<string | null>(
-    null
+    null,
   );
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,26 +26,23 @@ const Page = () => {
     setUserNameError(null);
     setPasswordError(null);
     setRetypePasswordError(null);
-    if (userName === "takenusername") {
-      setUserNameError("Username is already taken");
+    if (userName === 'takenusername') {
+      setUserNameError('Username is already taken');
     }
 
     if (password !== retypePassword) {
-      setPasswordError("Passwords must match");
-      setRetypePasswordError("Passwords must match");
+      setPasswordError('Passwords must match');
+      setRetypePasswordError('Passwords must match');
       return;
     }
-    console.log("hi");
 
     const response = await signup({
       userName,
       password,
       setError: (message: string) => setUserNameError(message),
     });
-    console.log("hi2");
-    console.log({ response });
     if (response?.status === 201) {
-      router.push("/setup-profile");
+      router.push('/setup-profile');
     }
   };
   return (
@@ -110,14 +109,15 @@ const Page = () => {
           </Grid>
         </form>
         <div className="text-sm mt-4 text-center text-gray-600">
-          Already have an account?{" "}
-          <Link href={"/login"}>
+          Already have an account?
+          {' '}
+          <Link href="/login">
             <span className="font-semibold hover:underline">Login</span>
           </Link>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Page;

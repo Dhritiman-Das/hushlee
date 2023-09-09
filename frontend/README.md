@@ -36,3 +36,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### Configure VS Code settings:
+
+To make sure ESLint fixes issues on save and Prettier formats using the ESLint rules, you should configure VS Code's settings:
+
+Open VS Code settings by pressing `Cmd` (or `Ctrl`) + `,`. In the top-right corner, click on the `{}` icon to open the JSON settings and add:
+
+```json
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "prettier.eslintIntegration": true
+}
+```

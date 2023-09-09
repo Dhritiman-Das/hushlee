@@ -11,5 +11,7 @@
     background-color: #4b5563;
 }
 
-scrollbar-color: #6b7280 #f3f4f6;
-scrollbar-width: thin;
+body {
+    scrollbar-color: #6b7280 #f3f4f6;
+    scrollbar-width: thin;
+}

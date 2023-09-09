@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Dialog,
@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-} from "@mui/material";
+} from '@mui/material';
 
 interface GeneralModalProps {
   open: boolean;
@@ -19,7 +19,7 @@ interface GeneralModalProps {
   secondaryBtnTxt: string;
 }
 
-const GeneralModal: React.FC<GeneralModalProps> = ({
+function GeneralModal({
   open,
   handleClose,
   title,
@@ -28,7 +28,7 @@ const GeneralModal: React.FC<GeneralModalProps> = ({
   agreeAction,
   primaryBtnTxt,
   secondaryBtnTxt,
-}) => {
+}: GeneralModalProps) {
   return (
     <Dialog
       open={open}
@@ -50,6 +50,6 @@ const GeneralModal: React.FC<GeneralModalProps> = ({
       </DialogActions>
     </Dialog>
   );
-};
+}
 
 export default GeneralModal;

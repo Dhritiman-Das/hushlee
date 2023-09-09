@@ -1,12 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./features/auth-slice";
-import profileSetupReducer, {
+import { configureStore } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import authReducer from './features/auth-slice';
+import {
   profileSetupSlice,
-} from "./features/profileSetup-slice";
-import { TypedUseSelectorHook, useSelector } from "react-redux";
-import homeSlice from "./features/home-slice";
-import chatSlice from "./features/chat-slice";
-import snackbarSlice from "./general/snackbar";
+} from './features/profileSetup-slice';
+import homeSlice from './features/home-slice';
+import chatSlice from './features/chat-slice';
+import snackbarSlice from './general/snackbar';
 
 export const store = configureStore({
   reducer: {

@@ -1,5 +1,5 @@
-import GeneralLoading from "@/components/loading/GeneralLoading";
-import { GiMagicHat } from "react-icons/gi";
+import React from 'react';
+import GeneralLoading from '@/components/loading/GeneralLoading';
 
 export default function Loading() {
   return <GeneralLoading />;

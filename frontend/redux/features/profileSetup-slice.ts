@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type InitialState = {
   value: SetupState;
@@ -17,19 +17,19 @@ type SetupState = {
 
 const initialState = {
   value: {
-    firstName: "",
-    lastName: "",
+    firstName: '',
+    lastName: '',
     dob: null,
-    gender: "",
-    city: "",
-    hometown: "",
-    dp: "",
+    gender: '',
+    city: '',
+    hometown: '',
+    dp: '',
     page: 1,
   } as SetupState,
 } as InitialState;
 
 export const profileSetupSlice = createSlice({
-  name: "profileSetup",
+  name: 'profileSetup',
   initialState,
   reducers: {
     firstNameAdded: (state, action: PayloadAction<string>) => {

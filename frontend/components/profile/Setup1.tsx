@@ -1,33 +1,28 @@
-import React from "react";
+import React from 'react';
 import {
   Grid,
   TextField,
   Button,
-  Avatar,
   RadioGroup,
   FormControl,
   FormLabel,
   FormControlLabel,
   Radio,
-  InputLabel,
-  MenuItem,
-  Select,
-  Link,
   FormHelperText,
-} from "@mui/material";
-import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { AppDispatch, RootState, useAppSelector } from "@/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { profileSetupActions } from "@/redux/features/profileSetup-slice";
+} from '@mui/material';
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { profileSetupActions } from '@/redux/features/profileSetup-slice';
 
 interface SetupState {
   [key: string]: any;
 }
 
-const Setup1 = () => {
+function Setup1() {
   const setupData: SetupState = useSelector(
-    (state: RootState) => state.profileSetup.value
+    (state: RootState) => state.profileSetup.value,
   );
   const dispatch = useDispatch();
   const [errors, setErrors] = React.useState({
@@ -37,7 +32,6 @@ const Setup1 = () => {
     gender: false,
   });
 
-  console.log(setupData);
   const validateInput = () => {
     const newErrors = {
       firstName: !setupData.firstName,
@@ -73,7 +67,7 @@ const Setup1 = () => {
               label="First name"
               required
               error={errors.firstName}
-              helperText={errors.firstName && "First name required"}
+              helperText={errors.firstName && 'First name required'}
               fullWidth
               onChange={(e) => {
                 dispatch(profileSetupActions.firstNameAdded(e.target.value));
@@ -87,7 +81,7 @@ const Setup1 = () => {
               label="Last name"
               required
               error={errors.lastName}
-              helperText={errors.firstName && "Last name required"}
+              helperText={errors.firstName && 'Last name required'}
               fullWidth
               onChange={(e) => {
                 dispatch(profileSetupActions.lastNameAdded(e.target.value));
@@ -136,7 +130,7 @@ const Setup1 = () => {
               />
             </RadioGroup>
             {errors.gender && (
-              <FormHelperText error={true}>
+              <FormHelperText error>
                 This field is required
               </FormHelperText>
             )}
@@ -179,6 +173,6 @@ const Setup1 = () => {
       </Grid>
     </div>
   );
-};
+}
 
 export default Setup1;
