@@ -13,18 +13,18 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        // Add your custom color palettes here
-        background: "#D1C4E9",
-        main: "#A29BFE",
-        accent: "#FFD166",
-        accentMain: "#FFD1E8",
-        textColor: "#2D3436",
-        lightTheme: "#000000",
-        button: "#C7D6C3",
-        button1: "#F2E9CF",
-        // Add more colors as needed
-      },
+      // colors: {
+      //   // Add your custom color palettes here
+      //   background: "#D1C4E9",
+      //   main: "#A29BFE",
+      //   accent: "#FFD166",
+      //   accentMain: "#FFD1E8",
+      //   textColor: "#2D3436",
+      //   lightTheme: "#000000",
+      //   button: "#C7D6C3",
+      //   button1: "#F2E9CF",
+      //   // Add more colors as needed
+      // },
       fontSize: {
         xs: ".75rem", // 12px
         sm: ".875rem", // 14px

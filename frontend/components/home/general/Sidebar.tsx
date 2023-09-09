@@ -27,7 +27,7 @@ const drawerWidth = 200;
 
 const Sidebar = () => {
   const router = useRouter();
-  const parentPath = "home2/";
+  const parentPath = "home/";
   const [currentUrl, setCurrentUrl] = useState<string>("");
 
   useEffect(() => {
