@@ -1,9 +1,5 @@
-'use client';
-
 import React from 'react';
 import './globals.css';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import ReduxProvider from '@/redux/provider';
 
 export const metadata = {
@@ -12,18 +8,11 @@ export const metadata = {
 };
 
 function RootLayout({ children }: { children: React.ReactNode }) {
-  const darkMode = true;
-  const darkTheme = createTheme({
-    palette: { mode: darkMode ? 'dark' : 'light' },
-  });
-
   return (
     <html lang="en">
       <body>
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline />
-          <ReduxProvider>{children}</ReduxProvider>
-        </ThemeProvider>
+
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

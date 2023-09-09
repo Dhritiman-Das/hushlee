@@ -2,6 +2,8 @@
 
 import { Box } from '@mui/material';
 import React from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import Header from '@/components/home/general/Header';
 import Sidebar from '@/components/home/general/Sidebar';
 
@@ -11,8 +13,13 @@ type LayoutProps = {
 };
 
 function Layout({ children }: LayoutProps) {
+  const darkMode = true;
+  const darkTheme = createTheme({
+    palette: { mode: darkMode ? 'dark' : 'light' },
+  });
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Header />
       <Box display="flex">
         <Sidebar />
@@ -48,7 +55,7 @@ function Layout({ children }: LayoutProps) {
           {children}
         </Box>
       </Box>
-    </>
+    </ThemeProvider>
   );
 }
 
