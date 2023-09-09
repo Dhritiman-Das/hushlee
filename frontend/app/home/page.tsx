@@ -1,37 +1,19 @@
-"use client";
-
-import Body from "@/components/home/Body";
-import Chats from "@/components/home/Chats";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import Header from "@/components/home/Header";
-import { useAppSelector } from "@/redux/store";
-import React, { useEffect } from "react";
-import Link from "next/link";
+import Sidebar from "@/components/home/general/Sidebar";
 
 const Page = () => {
-  const chatOpen = useAppSelector((state) => state.home.chatOpen);
-  const openChatId = Object.keys(chatOpen).find((id) => chatOpen[id]);
-  const navigateToChat = () => {
-    if (openChatId) {
-      const encodedChatId = encodeURIComponent(openChatId);
-      window.location.href = `/chat/${encodedChatId}`;
-    }
-  };
-
-  useEffect(() => {
-    navigateToChat(); // Call the navigation function on component mount
-  }, [openChatId]);
-
   return (
-    <div className="flex flex-col h-screen overflow-hidden text-textColor">
-      <Header />
-      <div className="bg-background h-full flex flex-grow">
-        <Chats />
-        <Body />
-      </div>
-      {openChatId && (
-        <button onClick={navigateToChat}>Go to Chat with Open Chat Id</button>
-      )}
-    </div>
+    <>
+      <div className="h-screen">Content</div>
+      <div className="h-screen">Content</div>
+    </>
   );
 };
 

@@ -34,6 +34,7 @@ export class AuthGuard implements CanActivate {
 
       // Attach the user's id to the request object
       request.userId = user._id.toString();
+      request.verified = user.verified;
 
       return true;
     } catch (error) {}

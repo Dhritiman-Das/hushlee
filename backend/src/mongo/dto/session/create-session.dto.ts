@@ -26,6 +26,9 @@ export class ExposeDto {
 
 export class CreateSessionDto {
   @IsNotEmpty()
+  callerLink: string;
+
+  @IsNotEmpty()
   owner: string;
 
   @IsNotEmpty()
