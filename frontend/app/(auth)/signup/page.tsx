@@ -1,23 +1,22 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { GiMagicHat } from 'react-icons/gi';
-import Link from 'next/link';
-import {
-  Button, Grid, TextField,
-} from '@mui/material';
-import { useRouter } from 'next/navigation';
-import { signup } from '@/requests/auth/signup';
+import React, { useState } from "react";
+import { GiMagicHat } from "react-icons/gi";
+import Link from "next/link";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { signup } from "@/requests/auth/signup";
+import { grey } from "@mui/material/colors";
 
 function Page() {
   const router = useRouter();
-  const [userName, setUserName] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [retypePassword, setRetypePassword] = useState<string>('');
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [retypePassword, setRetypePassword] = useState<string>("");
   const [userNameError, setUserNameError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [retypePasswordError, setRetypePasswordError] = useState<string | null>(
-    null,
+    null
   );
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,13 +25,13 @@ function Page() {
     setUserNameError(null);
     setPasswordError(null);
     setRetypePasswordError(null);
-    if (userName === 'takenusername') {
-      setUserNameError('Username is already taken');
+    if (userName === "takenusername") {
+      setUserNameError("Username is already taken");
     }
 
     if (password !== retypePassword) {
-      setPasswordError('Passwords must match');
-      setRetypePasswordError('Passwords must match');
+      setPasswordError("Passwords must match");
+      setRetypePasswordError("Passwords must match");
       return;
     }
 
@@ -42,25 +41,48 @@ function Page() {
       setError: (message: string) => setUserNameError(message),
     });
     if (response?.status === 201) {
-      router.push('/setup-profile');
+      router.push("/setup-profile");
     }
   };
   return (
-    <div className="bg-background h-screen flex items-center justify-center">
-      <div className="bg-main h-fit w-[500px] p-11 rounded-2xl text-textColor">
-        <div className="flex items-center justify-center">
-          <GiMagicHat className="text-4xl mr-2 transform -rotate-12" />
-          <div className="italic text-3xl font-medium">Hushlee</div>
-        </div>
-        <div className="text-[32px] font-bold text-center my-5">Signup</div>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      height="100vh"
+      className="bg-background"
+      sx={{ bgcolor: grey[300] }}
+    >
+      <Box
+        bgcolor="bg-main"
+        width={500}
+        padding={3}
+        borderRadius="borderRadius"
+        className="text-textColor"
+        sx={{ bgcolor: grey[50], borderRadius: 2 }}
+      >
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <GiMagicHat
+            style={{
+              fontSize: 32,
+              marginRight: 8,
+              transform: "rotate(-12deg)",
+            }}
+          />
+          <Typography variant="h5" className="italic font-medium">
+            Hushlee
+          </Typography>
+        </Box>
+        <Typography variant="h4" align="center" className="font-bold my-5">
+          Signup
+        </Typography>
         <form onSubmit={handleSubmit} autoComplete="off">
-          <Grid container direction="column" spacing={3}>
+          <Box component={Grid} container direction="column" spacing={3}>
             <Grid item xs={12}>
               <TextField
                 error={!!userNameError}
                 helperText={userNameError}
                 id="userName"
-                key="userName"
                 label="Username"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
@@ -73,7 +95,6 @@ function Page() {
                 error={!!passwordError}
                 helperText={passwordError}
                 id="password"
-                key="password"
                 label="Password"
                 type="password"
                 value={password}
@@ -87,7 +108,6 @@ function Page() {
                 error={!!retypePasswordError}
                 helperText={retypePasswordError}
                 id="retypePassword"
-                key="retypePassword"
                 label="Retype Password"
                 type="password"
                 value={retypePassword}
@@ -106,17 +126,16 @@ function Page() {
                 Signup
               </Button>
             </Grid>
-          </Grid>
+          </Box>
         </form>
-        <div className="text-sm mt-4 text-center text-gray-600">
-          Already have an account?
-          {' '}
+        <Typography variant="body2" align="center" color="textSecondary" mt={2}>
+          Already have an account?{" "}
           <Link href="/login">
             <span className="font-semibold hover:underline">Login</span>
           </Link>
-        </div>
-      </div>
-    </div>
+        </Typography>
+      </Box>
+    </Box>
   );
 }
 
