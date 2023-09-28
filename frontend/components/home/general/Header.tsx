@@ -14,11 +14,19 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import {
+  FormControl, Select, SelectChangeEvent,
+} from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { TModes, themeActions } from '@/redux/general/theme';
+import { RootState } from '@/redux/store';
 
 const pages = [{ name: 'Notifications', icon: NotificationsIcon }];
 const settings = ['Support', 'Upgrade', 'Contact', 'Logout'];
 
 function Header() {
+  const dispatch = useDispatch();
+  const mode = useSelector((state:RootState) => state.theme.mode);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -26,6 +34,12 @@ function Header() {
     null,
   );
 
+  const handleChangeMode = (event: SelectChangeEvent) => {
+    const modeValue = event.target.value as TModes;
+    console.log({ modeValue });
+
+    dispatch(themeActions.changeTheme(modeValue));
+  };
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -125,7 +139,24 @@ function Header() {
           >
             HUSHLEE
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box>
+              <FormControl sx={{ width: '180px' }}>
+                <Select
+                  labelId="demo-simple-select-mode"
+                  id="demo-simple-select"
+                  value={mode}
+                  onChange={handleChangeMode}
+                  sx={{ height: '40px', color: 'inherit' }}
+
+                >
+                  <MenuItem value="light">
+                    Light mode 🌞
+                  </MenuItem>
+                  <MenuItem value="dark">Dark mode 🌚</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <IconButton

@@ -7,6 +7,7 @@ import {
 import homeSlice from './features/home-slice';
 import chatSlice from './features/chat-slice';
 import snackbarSlice from './general/snackbar';
+import themeSlice from './general/theme';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     home: homeSlice.reducer,
     chat: chatSlice.reducer,
     snackbar: snackbarSlice.reducer,
+    theme: themeSlice.reducer,
   },
 });
 
