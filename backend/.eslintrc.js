@@ -1,4 +1,9 @@
 module.exports = {
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
@@ -17,8 +22,7 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
-    // Indentation
-    indent: ['error', 2],
+    "linebreak-style": 0,
 
     // Enforce semi-colon usage
     semi: ['error', 'always'],

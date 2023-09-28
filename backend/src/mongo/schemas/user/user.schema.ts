@@ -1,17 +1,16 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-
 @Schema({ collection: 'User' })
 export class User {
   @Prop({ required: true })
   userSessionId: string;
   @Prop({ required: true })
-  userName: string;
+  userName: string; //settings
   @Prop({ required: false })
-  email: string;
+  email: string; //settings
   @Prop({ required: true })
-  password: string;
+  password: string; //settings
   @Prop({ required: true, default: false })
-  verified: boolean;
+  verified: boolean; //settings //profile
   @Prop({ required: true, default: false })
   setupComplete: boolean;
   @Prop({ default: Date.now })
